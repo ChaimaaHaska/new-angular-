@@ -1,0 +1,43 @@
+<div class="panel panel-default">
+    <div class="panel panel-heading">Gestion des clients</div>
+<div class="panel panel-body">
+<div>
+    <button class="btn btn-success" (click)="onNewClient()">Add</button>
+</div>
+<div *ngIf="mode=='new-client'"class="col-md-6" >
+    <form #f="ngForm" (ngSubmit)="onSaveClient(f.value)">
+      <div class="form-group">
+          <label class="control-label">Name</label>
+          <input type="text" name="name" ngModel class="form-control"> 
+      </div>
+      <button class="btn btn-success" type="submit">Save</button>
+    </form>
+</div>
+
+<div *ngIf="mode=='edit-client'"class="col-md-6" >
+        <form #f="ngForm" (ngSubmit)="onUpdateClient(f.value)">
+          <div class="form-group">
+              <label class="control-label">Name</label>
+              <input type="text" name="name" ngModel class="form-control" [(ngModel)]="CurrentClient.nom"> 
+          </div>
+          <button class="btn btn-success" type="submit">Save</button>
+        </form>
+    </div>
+<table class="table " *ngIf="clients && mode=='list'">
+<tr>
+    <th>Name</th>
+</tr>
+<tr *ngFor="let c of clients._embedded.clients">
+    <td>{{c.nom}}</td>
+    <td>
+        <button class="btn btn-danger"(click)="onDeleteClient(c)" > Delete</button>
+    </td>
+
+    <td>
+            <button class="btn btn-danger"(click)="onEditClient(c)" >Edit</button>
+        </td>
+</tr>
+
+</table>
+</div>
+</div>

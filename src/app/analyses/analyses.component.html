@@ -1,0 +1,11 @@
+<table class="table table-striped">
+    <tr>
+        <th>Name</th> 
+        <th>Price</th>
+    </tr>
+    <tr *ngFor="let analyse of analyses?._embedded.analyses ">
+        <td>{{analyse.nom}}</td>
+        <td>{{analyse.prix|number : '0.4'}}</td>
+
+    </tr>
+</table>
